@@ -2,7 +2,6 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import { createServer as createViteServer } from "vite";
-import { GoogleGenAI } from "@google/genai";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -34,13 +33,7 @@ async function startServer() {
           requiresKey: false,
           endpoint: "/api/rates"
         },
-        geminiAI: {
-          provider: "Google AI Studio Gemini API",
-          cost: "100% Free Tier Supported",
-          requiresKey: "Optional (Built-in Offline Dorper Agronomist Engine activates when no key is set)",
-          model: "gemini-2.5-flash",
-          endpoint: "/api/ai/advisor"
-        }
+        
       },
       hostingCompatibility: ["Vercel", "Netlify", "Render", "Railway", "Docker", "Node.js"]
     });
@@ -180,73 +173,7 @@ Given Iten's cold morning mists and elevation (2,400m):
 2. **Highland Pasture & Feeds**: Supplement dry Rhodes hay with sunflower cake, cotton seed cake, or dairy meal concentrates.
 3. **Health Regimen**: Keep Faith's timetable updated for quarterly deworming and bi-annual Clostridial/Enterotoxaemia vaccines.
 4. **Commercial Target**: Aim for market weights of 40kg within 4–5 months to achieve top-tier meat and breeding stock prices in Kenya.`;
-  }
-
-  // Unified AI Advisor Handler (handles Gemini API, Vercel AI Gateway, and local VS Code offline fallbacks)
-  const handleAiAdvisor = async (req: express.Request, res: express.Response) => {
-    const { prompt, context } = req.body || {};
-    const userPrompt = prompt || "Provide a summary of Dorper care in Iten";
-
-    const apiKey = process.env.GEMINI_API_KEY || process.env.AI_GATEWAY_TOKEN || process.env.VERCEL_AI_GATEWAY_TOKEN;
-
-    // If no API key configured (standard for fresh local VS Code clone), return instant domain insights
-    if (!apiKey) {
-      const advice = getExpertDorperAdvice(userPrompt, context);
-      return res.json({
-        advice,
-        reply: advice,
-        provider: "offline-expert-engine",
-        status: "success",
-        note: "Running in local VS Code mode with Chebii Dorper Agronomist Engine."
-      });
-    }
-
-    try {
-      const ai = new GoogleGenAI({ apiKey });
-      const systemInstruction = `You are an expert Livestock Consultant and Agricultural Financial Advisor specializing in Dorper sheep farming in Kenya and East Africa. 
-You are advising the Chebii family siblings: Nathan Kiprop, Evans Kemboi, Faith Jepkurui, and Mercy Jelagat. 
-They started with 2 Dorper sheep and now have 4 sheep in Iten, Elgeyo-Marakwet (2,400m altitude).
-Provide clear, actionable, practical, and highly professional advice regarding feed management, vaccination protocols, breeding strategies, expense optimization, and profit maximization. Keep answers structured with markdown bullet points.`;
-
-      const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
-        contents: [
-          {
-            role: "user",
-            parts: [
-              {
-                text: `${systemInstruction}\n\nContext about current farm state: ${JSON.stringify(context || {})}\n\nUser Question/Request: ${userPrompt}`
-              }
-            ]
-          }
-        ]
-      });
-
-      const advice = response.text || getExpertDorperAdvice(userPrompt, context);
-      return res.json({ 
-        advice, 
-        reply: advice, 
-        provider: "gemini-api",
-        status: "success" 
-      });
-    } catch (error: any) {
-      // Gracefully catch Vercel AI Gateway authentication exceptions, invalid keys, or network failures
-      console.warn("AI Gateway / Gemini authentication exception caught (graceful fallback activated):", error.message || error);
-      const advice = getExpertDorperAdvice(userPrompt, context);
-      return res.json({
-        advice,
-        reply: advice,
-        provider: "fallback-expert-engine",
-        status: "success",
-        warning: "Vercel AI Gateway / Gemini authentication fallback handled seamlessly."
-      });
-    }
-  };
-
-  // Register both /api/ai/advisor and /api/gemini/advisor endpoints
-  app.post("/api/ai/advisor", handleAiAdvisor);
-  app.post("/api/gemini/advisor", handleAiAdvisor);
-
+  }      
   // Django Architecture Documentation / Schema Export API
   app.get("/api/django-schema", (req, res) => {
     const modelsPy = `

@@ -253,9 +253,6 @@ export const FreeApisAndDeployModal: React.FC<FreeApisAndDeployModalProps> = ({
                     </p>
                   </div>
                 </div>
-                <p className="text-xs text-slate-300 pt-1 leading-relaxed">
-                  If you deploy without setting a <code className="text-amber-300 bg-slate-950 px-1 py-0.5 rounded font-mono text-[11px]">GEMINI_API_KEY</code>, the application automatically runs the Chebii Dorper Agronomist Offline Rule Engine. No deployment crashes, no 500 errors!
-                </p>
               </div>
             </div>
           ) : (
