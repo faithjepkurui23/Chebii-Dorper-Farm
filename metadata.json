@@ -1,0 +1,6 @@
+{
+  "name": "Chebii Family Dorper Sheep Farm",
+  "description": "Professional livestock management and financial tracking system for Chebii family Dorper sheep farming, shareholder equity, expenses, vaccines, produce sales, and real-time interactive reporting.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

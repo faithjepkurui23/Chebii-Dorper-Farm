@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#022c22" />
+      <stop offset="50%" stopColor="#064e3b" />
+      <stop offset="100%" stopColor="#0f172a" />
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stopColor="#fbbf24" />
+      <stop offset="50%" stopColor="#f59e0b" />
+      <stop offset="100%" stopColor="#d97706" />
+    </linearGradient>
+    <linearGradient id="emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#34d399" />
+      <stop offset="100%" stopColor="#059669" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background with rounded rectangle for icon -->
+  <rect width="512" height="512" rx="110" fill="url(#bg)" stroke="url(#gold)" stroke-width="8"/>
+
+  <!-- Sun rays / Highland glow -->
+  <circle cx="256" cy="180" r="120" fill="url(#emerald)" opacity="0.15" filter="blur(30px)"/>
+
+  <!-- Mountain Peaks (Iten Highland Escarpment) -->
+  <path d="M60 380 L180 260 L270 330 L390 210 L460 380 Z" fill="#042f2e" opacity="0.6"/>
+  <path d="M120 380 L230 280 L320 350 L420 270 L480 380 Z" fill="url(#emerald)" opacity="0.3"/>
+
+  <!-- Dorper Ram Silhouette & Golden Spiral Horn -->
+  <circle cx="256" cy="210" r="75" fill="#0f172a" stroke="url(#gold)" stroke-width="4"/>
+  <!-- Ram Horn -->
+  <path d="M210 200 C200 160, 240 140, 275 155 C305 170, 310 205, 290 225 C275 240, 245 235, 240 210 C235 195, 250 185, 265 190" 
+        stroke="url(#gold)" stroke-width="12" stroke-linecap="round" fill="none"/>
+  <!-- Dorper face profile -->
+  <path d="M250 185 C265 185, 295 195, 305 220 C315 245, 295 270, 275 275 C255 280, 240 255, 240 230 Z" fill="url(#emerald)"/>
+  <circle cx="275" cy="215" r="7" fill="#ffffff"/>
+
+  <!-- Calligraphic "Chebii" Name -->
+  <text x="256" y="380" font-family="'Great Vibes', 'Alex Brush', cursive, serif" font-size="78" font-weight="bold" fill="url(#gold)" text-anchor="middle" letter-spacing="2">Chebii</text>
+  <text x="256" y="420" font-family="'Plus Jakarta Sans', sans-serif" font-size="20" font-weight="800" fill="#a7f3d0" text-anchor="middle" letter-spacing="6">DORPER SHEEP FARM</text>
+  <text x="256" y="445" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="600" fill="#fbbf24" text-anchor="middle" letter-spacing="3">ITEN • 2,400M</text>
+</svg>
